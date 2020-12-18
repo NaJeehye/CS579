@@ -76,10 +76,22 @@ semLex(prep,M):-
         sem:[lam(K,lam(P,lam(Y,and(app(K,lam(X,F)),app(P,Y)))))]],
    compose(F,Sym,[Y,X]).
 
+
+semLex(to,M):-
+   M = [symbol:Sym,
+        sem:[lam(K,lam(P,lam(Y,and(app(K,lam(X,F)),app(P,Y)))))]],
+   compose(F,Sym,[Y,X]).
+
+
 semLex(adj,M):-
    M = [symbol:Sym,
         sem:[lam(P,lam(X,and(F,app(P,X))))]],
    compose(F,Sym,[X]).
+
+semLex(pi,M):-
+   M = [symbol:Sym,
+        sem:[lam(K,lam(P,lam(Y,and(app(K,F),app(P,Y)))))]],
+   compose(F,Sym,[Y]).
 
 semLex(av,M):-
    M = [pol:neg,

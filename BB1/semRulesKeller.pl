@@ -66,15 +66,18 @@ combine(whnp:[lam(P,app(P,X)),bo([app(A,B)|S],X)],[det:[A],n:[B|S]]).
 combine(whnp:[lam(P,app(P,X)),bo([A],X)],[qnp:[A]]).
 
 combine(n:[app(A,B)|S],[adj:[A],n:[B|S]]).
-combine(n:[app(A,B)|S],[n:[B|S],adj:[A]]).
 combine(n:A,[noun:A]).
 combine(n:[app(B,A)|S],[noun:[A],nmod:[B|S]]).
 combine(n:[app(app(B,A),C)|S3],[n:[A|S1],coord:[B],n:[C|S2]]):-
 	appendLists(S1,S2,S3).
 
 combine(nmod:A,[pp:A]).
+combine(nmod:A,[toi:A]).
+combine(nmod:A,[pi:A]).
 combine(nmod:A,[rc:A]).
 combine(nmod:[lam(P,app(A,app(B,P)))|S3],[pp:[A|S1],nmod:[B|S2]]):-
+   appendLists(S1,S2,S3).
+combine(nmod:[lam(P,app(A,app(B,P)))|S3],[toi:[A|S1],nmod:[B|S2]]):-
    appendLists(S1,S2,S3).
 
 combine(vp:[app(A,B)|S],[av:[A],vp:[B|S]]).
@@ -85,6 +88,7 @@ combine(vp:[app(app(B,A),C)|S3],[vp:[A|S1],coord:[B],vp:[C|S2]]):-
 	appendLists(S1,S2,S3).
 
 combine(pp:[app(A,B)|S],[prep:[A],np:[B|S]]).
+combine(pp:[app(A,B)|S],[to:[A],vp:[B|S]]).
 
 combine(rc:[app(A,B)|S],[relpro:[A],vp:[B|S]]).
 

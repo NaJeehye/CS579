@@ -26,7 +26,7 @@
 ========================================================================*/
 
 t([sem:T])--> 
-   s([coord:no,sem:S]), 
+   s([coord:no,sem:S]),
    {combine(t:T,[s:S])}.
 
 t([sem:T])--> 
@@ -61,31 +61,6 @@ s([coord:ant,sem:Sem])-->
    [if], 
    s([coord:no,sem:S]),
    {combine(s:Sem,[if:S])}.
-   
-s([coord:either,sem:Sem])--> 
-   [either], 
-   s([coord:no,sem:S]),
-   {combine(s:Sem,[either:S])}.
-
-s([coord:con,sem:Sem])--> 
-   [then], 
-   s([coord:no,sem:S]),
-   {combine(s:Sem,[then:S])}.
-
-s([coord:con,sem:Sem])-->
-   s([coord:no,sem:S]),
-   {combine(s:Sem,[then:S])}.
-
-s([coord:or,sem:Sem])-->
-   [or], 
-   s([coord:no,sem:S]),
-   {combine(s:Sem,[or:S])}.
-
-sinv([gap:G,sem:S])-->
-   av([inf:fin,num:Num,sem:Sem]),
-   np([coord:_,num:Num,gap:[],sem:NP]),
-   vp([coord:_,inf:inf,num:Num,gap:G,sem:VP]), 
-   {combine(sinv:S,[av:Sem,np:NP,vp:VP])}.
 
 s([coord:ant,sem:Sem])--> 
    [after], 
@@ -142,6 +117,32 @@ s([coord:ant,sem:Sem])-->
    s([coord:no,sem:S]),
    {combine(s:Sem,[if:S])}.
 
+s([coord:either,sem:Sem])--> 
+   [either], 
+   s([coord:no,sem:S]),
+   {combine(s:Sem,[either:S])}.
+
+s([coord:con,sem:Sem])--> 
+   [then], 
+   s([coord:no,sem:S]),
+   {combine(s:Sem,[then:S])}.
+
+s([coord:con,sem:Sem])-->
+   s([coord:no,sem:S]),
+   {combine(s:Sem,[then:S])}.
+
+s([coord:or,sem:Sem])-->
+   [or], 
+   s([coord:no,sem:S]),
+   {combine(s:Sem,[or:S])}.
+
+sinv([gap:G,sem:S])-->
+   av([inf:fin,num:Num,sem:Sem]),
+   np([coord:_,num:Num,gap:[],sem:NP]),
+   vp([coord:_,inf:inf,num:Num,gap:G,sem:VP]), 
+   {combine(sinv:S,[av:Sem,np:NP,vp:VP])}.
+
+
 /*========================================================================
    Questions
 ========================================================================*/
@@ -173,7 +174,7 @@ np([coord:yes,num:sg,gap:[],sem:NP])-->
    np([coord:no,num:sg,gap:[],sem:NP1]), 
    coord([type:disj,sem:C]), 
    np([coord:_,num:sg,gap:[],sem:NP2]), 
-   {combine(np:NP,[np:NP1,coord:C,np:NP2])}.  
+   {combine(np:NP,[np:NP1,coord:C,np:NP2])}.
 
 np([coord:no,num:sg,gap:[],sem:NP])--> 
    det([mood:decl,type:_,sem:Det]), 
@@ -187,6 +188,7 @@ np([coord:no,num:sg,gap:[],sem:NP])-->
 np([coord:no,num:sg,gap:[],sem:NP])--> 
    qnp([mood:decl,sem:QNP]), 
    {combine(np:NP,[qnp:QNP])}.
+
 
 
 /*========================================================================
@@ -217,11 +219,7 @@ n([coord:C,sem:Sem])-->
    adj([sem:A]), 
    n([coord:C,sem:N]), 
    {combine(n:Sem,[adj:A,n:N])}.
-   
-n([coord:no,sem:Sem])-->  
-   n([coord:no,sem:N]), 
-   adj([sem:A]),
-   {combine(n:Sem,[n:N,adj:A])}.
+
 
 n([coord:no,sem:N])--> 
    noun([sem:Noun]),
@@ -230,11 +228,19 @@ n([coord:no,sem:N])-->
 n([coord:no,sem:Sem])--> 
    noun([sem:N]), 
    nmod([sem:PP]),
-   {combine(n:Sem,[noun:N,nmod:PP])}. 
+   {combine(n:Sem,[noun:N,nmod:PP])}.
 
 nmod([sem:N])--> 
    pp([sem:PP]),
    {combine(nmod:N,[pp:PP])}.
+
+nmod([sem:N])--> 
+   toi([sem:Toi]),
+   {combine(nmod:N,[toi:Toi])}.
+
+nmod([sem:N])--> 
+   pi([sem:Pi]),
+   {combine(nmod:N,[pi:Pi])}.
 
 nmod([sem:N])--> 
    rc([sem:RC]),
@@ -275,7 +281,6 @@ vp([coord:no,inf:I,num:Num,gap:G,sem:VP])-->
    np([coord:_,num:_,gap:G,sem:NP]), 
    {combine(vp:VP,[tv:TV,np:NP])}.
 
-
 /*========================================================================
    Prepositional Phrases
 ========================================================================*/
@@ -285,6 +290,11 @@ pp([sem:PP])-->
    np([coord:_,num:_,gap:[],sem:NP]), 
    {combine(pp:PP,[prep:Prep,np:NP])}.
 
+
+toi([sem:Toi])--> 
+   to([sem:To]), 
+   vp([coord:_,inf:inf,num:sg,gap:[],sem:VP]), 
+   {combine(toi:Toi,[to:To,vp:VP])}.
 
 /*========================================================================
    Relative Clauses
@@ -334,6 +344,16 @@ prep([sem:Sem])-->
    {lexEntry(prep,[symbol:Sym,syntax:Word])},
    Word,
    {semLex(prep,[symbol:Sym,sem:Sem])}.
+
+to([sem:Sem])--> 
+   {lexEntry(to,[symbol:Sym,syntax:Word])},
+   Word,
+   {semLex(to,[symbol:Sym,sem:Sem])}.
+
+pi([sem:Sem])--> 
+   {lexEntry(pi,[symbol:Sym,syntax:Word])},
+   Word,
+   {semLex(pi,[symbol:Sym,sem:Sem])}.
 
 adj([sem:Sem])--> 
    {lexEntry(adj,[symbol:Sym,syntax:Word])},
