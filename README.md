@@ -1,3 +1,12 @@
 # CS579
 
-News Bot
+## News Bot
+
+
+## usage
+
+```
+python run.py
+```
+
+
