@@ -1,0 +1,169 @@
+----- Otter 3.3, August 2003 -----
+The process was started by a Windows user on a Windows machine,
+Wed Dec 09 22:28:51 2020
+The command was "otter".
+
+set(auto).
+   dependent: set(auto1).
+   dependent: set(process_input).
+   dependent: clear(print_kept).
+   dependent: clear(print_new_demod).
+   dependent: clear(print_back_demod).
+   dependent: clear(print_back_sub).
+   dependent: set(control_memory).
+   dependent: assign(max_mem, 12000).
+   dependent: assign(pick_given_ratio, 4).
+   dependent: assign(stats_level, 1).
+   dependent: assign(max_seconds, 10800).
+assign(max_seconds,30).
+clear(print_proofs).
+set(prolog_style_variables).
+
+formula_list(usable).
+-(-((all A (event(A)->thing(A)))& (all B (entity(B)->thing(B)))& (all C (object(C)->entity(C)))& (all D (organism(D)->entity(D)))& (all E (animal(E)->organism(E)))& (all F (person(F)->organism(F)))& (all G (man(G)->person(G)))& (all H (woman(H)->person(H)))& (all I (entity(I)-> -event(I)))& (all J (organism(J)-> -object(J)))& (all K (person(K)-> -animal(K)))& (all L (woman(L)-> -man(L)))& (all M (M=mia->woman(M)))& (all N (N=vincent->man(N)))& (exists O (famous(O)&ceo(O)&mia=O))& (exists P (ceo(P)&vincent=P))& -(exists Q (training(Q)& (exists R (personnel(R)& (exists S (of(S,R)&department(S)&told(verma,S)&told(verma,Q))))))))).
+end_of_list.
+
+-------> usable clausifies to:
+
+list(usable).
+0 [] -event(A)|thing(A).
+0 [] -entity(B)|thing(B).
+0 [] -object(C)|entity(C).
+0 [] -organism(D)|entity(D).
+0 [] -animal(E)|organism(E).
+0 [] -person(F)|organism(F).
+0 [] -man(G)|person(G).
+0 [] -woman(H)|person(H).
+0 [] -entity(I)| -event(I).
+0 [] -organism(J)| -object(J).
+0 [] -person(K)| -animal(K).
+0 [] -woman(L)| -man(L).
+0 [] M!=mia|woman(M).
+0 [] N!=vincent|man(N).
+0 [] famous($c1).
+0 [] ceo($c1).
+0 [] mia=$c1.
+0 [] ceo($c2).
+0 [] vincent=$c2.
+0 [] -training(Q)| -personnel(R)| -of(S,R)| -department(S)| -told(verma,S)| -told(verma,Q).
+end_of_list.
+
+SCAN INPUT: prop=0, horn=1, equality=1, symmetry=0, max_lits=6.
+
+This is a Horn set with equality.  The strategy will be
+Knuth-Bendix and hyper_res, with positive clauses in
+sos and nonpositive clauses in usable.
+
+   dependent: set(knuth_bendix).
+   dependent: set(anl_eq).
+   dependent: set(para_from).
+   dependent: set(para_into).
+   dependent: clear(para_from_right).
+   dependent: clear(para_into_right).
+   dependent: set(para_from_vars).
+   dependent: set(eq_units_both_ways).
+   dependent: set(dynamic_demod_all).
+   dependent: set(dynamic_demod).
+   dependent: set(order_eq).
+   dependent: set(back_demod).
+   dependent: set(lrpo).
+   dependent: set(hyper_res).
+   dependent: clear(order_hyper).
+
+------------> process usable:
+** KEPT (pick-wt=4): 1 [] -event(A)|thing(A).
+** KEPT (pick-wt=4): 2 [] -entity(A)|thing(A).
+** KEPT (pick-wt=4): 3 [] -object(A)|entity(A).
+** KEPT (pick-wt=4): 4 [] -organism(A)|entity(A).
+** KEPT (pick-wt=4): 5 [] -animal(A)|organism(A).
+** KEPT (pick-wt=4): 6 [] -person(A)|organism(A).
+** KEPT (pick-wt=4): 7 [] -man(A)|person(A).
+** KEPT (pick-wt=4): 8 [] -woman(A)|person(A).
+** KEPT (pick-wt=4): 9 [] -entity(A)| -event(A).
+** KEPT (pick-wt=4): 10 [] -organism(A)| -object(A).
+** KEPT (pick-wt=4): 11 [] -person(A)| -animal(A).
+** KEPT (pick-wt=4): 12 [] -woman(A)| -man(A).
+** KEPT (pick-wt=5): 13 [] A!=mia|woman(A).
+** KEPT (pick-wt=5): 14 [] A!=vincent|man(A).
+** KEPT (pick-wt=15): 15 [] -training(A)| -personnel(B)| -of(C,B)| -department(C)| -told(verma,C)| -told(verma,A).
+
+------------> process sos:
+** KEPT (pick-wt=2): 16 [] famous($c1).
+** KEPT (pick-wt=2): 17 [] ceo($c1).
+** KEPT (pick-wt=3): 18 [] mia=$c1.
+---> New Demodulator: 19 [new_demod,18] mia=$c1.
+** KEPT (pick-wt=2): 20 [] ceo($c2).
+** KEPT (pick-wt=3): 21 [] vincent=$c2.
+---> New Demodulator: 22 [new_demod,21] vincent=$c2.
+>>>> Starting back demodulation with 19.
+    >> back demodulating 13 with 19.
+>>>> Starting back demodulation with 22.
+    >> back demodulating 14 with 22.
+
+======= end of input processing =======
+
+=========== start of search ===========
+
+given clause #1: (wt=2) 16 [] famous($c1).
+
+given clause #2: (wt=2) 17 [] ceo($c1).
+
+given clause #3: (wt=2) 20 [] ceo($c2).
+
+given clause #4: (wt=3) 18 [] mia=$c1.
+
+given clause #5: (wt=3) 21 [] vincent=$c2.
+
+given clause #6: (wt=5) 23 [back_demod,13,demod,19] A!=$c1|woman(A).
+
+given clause #7: (wt=2) 27 [hyper,23,18,demod,19] woman($c1).
+
+given clause #8: (wt=2) 28 [hyper,27,8] person($c1).
+
+given clause #9: (wt=2) 29 [hyper,28,6] organism($c1).
+
+given clause #10: (wt=2) 30 [hyper,29,4] entity($c1).
+
+given clause #11: (wt=5) 24 [back_demod,14,demod,22] A!=$c2|man(A).
+
+given clause #12: (wt=2) 31 [hyper,30,2] thing($c1).
+
+given clause #13: (wt=2) 32 [hyper,24,21,demod,22] man($c2).
+
+given clause #14: (wt=2) 33 [hyper,32,7] person($c2).
+
+given clause #15: (wt=2) 34 [hyper,33,6] organism($c2).
+
+given clause #16: (wt=3) 25 [para_into,18.1.1,18.1.1] $c1=$c1.
+
+given clause #17: (wt=2) 35 [hyper,34,4] entity($c2).
+
+given clause #18: (wt=2) 36 [hyper,35,2] thing($c2).
+
+given clause #19: (wt=3) 26 [para_into,21.1.1,21.1.1] $c2=$c2.
+
+Search stopped because sos empty.
+
+============ end of search ============
+
+-------------- statistics -------------
+clauses given                 19
+clauses generated             16
+clauses kept                  34
+clauses forward subsumed       6
+clauses back subsumed          0
+Kbytes malloced              223
+
+----------- times (seconds) -----------
+user CPU time          0.00          (0 hr, 0 min, 0 sec)
+system CPU time        0.00          (0 hr, 0 min, 0 sec)
+wall-clock time        0             (0 hr, 0 min, 0 sec)
+hyper_res time         0.00
+para_into time         0.00
+para_from time         0.00
+for_sub time           0.00
+back_sub time          0.00
+conflict time          0.00
+demod time             0.00
+
+Process 0 finished Wed Dec 09 22:28:51 2020

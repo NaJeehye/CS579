@@ -1,0 +1,27 @@
+set(auto).
+
+assign(max_seconds,30).
+
+clear(print_proofs).
+
+set(prolog_style_variables).
+
+formula_list(usable).
+
+-(-((((all A (event(A) -> thing(A))) & 
+     ((all B (entity(B) -> thing(B))) & 
+          ((all C (object(C) -> entity(C))) & 
+               ((all D (organism(D) -> entity(D))) & 
+                    ((all E (animal(E) -> organism(E))) & 
+                         ((all F (person(F) -> organism(F))) & 
+                              ((all G (man(G) -> person(G))) & 
+                                   ((all H (woman(H) -> person(H))) & 
+                                        ((all I (entity(I) -> -(event(I)))) & 
+                                             ((all J (organism(J) -> -(object(J)))) & 
+                                                  ((all K (person(K) -> -(animal(K)))) & 
+                                                       ((all L (woman(L) -> -(man(L)))) & 
+                                                            ((all M ((M = mia) -> woman(M))) & 
+                                                                 (all N ((N = vincent) -> man(N)))))))))))))))) & 
+     -(love(mia,vincent))))).
+
+end_of_list.

@@ -1,0 +1,114 @@
+----- Otter 3.3, August 2003 -----
+The process was started by a Windows user on a Windows machine,
+Thu Dec 10 00:37:47 2020
+The command was "otter".
+
+set(auto).
+   dependent: set(auto1).
+   dependent: set(process_input).
+   dependent: clear(print_kept).
+   dependent: clear(print_new_demod).
+   dependent: clear(print_back_demod).
+   dependent: clear(print_back_sub).
+   dependent: set(control_memory).
+   dependent: assign(max_mem, 12000).
+   dependent: assign(pick_given_ratio, 4).
+   dependent: assign(stats_level, 1).
+   dependent: assign(max_seconds, 10800).
+assign(max_seconds,30).
+clear(print_proofs).
+set(prolog_style_variables).
+
+formula_list(usable).
+-(-((all A (event(A)->thing(A)))& (all B (entity(B)->thing(B)))& (all C (object(C)->entity(C)))& (all D (organism(D)->entity(D)))& (all E (animal(E)->organism(E)))& (all F (person(F)->organism(F)))& (all G (man(G)->person(G)))& (all H (woman(H)->person(H)))& (all I (entity(I)-> -event(I)))& (all J (organism(J)-> -object(J)))& (all K (person(K)-> -animal(K)))& (all L (woman(L)-> -man(L)))& (all M (M=mia->woman(M)))& (all N (N=vincent->man(N)))& -love(mia,vincent))).
+end_of_list.
+
+-------> usable clausifies to:
+
+list(usable).
+0 [] -event(A)|thing(A).
+0 [] -entity(B)|thing(B).
+0 [] -object(C)|entity(C).
+0 [] -organism(D)|entity(D).
+0 [] -animal(E)|organism(E).
+0 [] -person(F)|organism(F).
+0 [] -man(G)|person(G).
+0 [] -woman(H)|person(H).
+0 [] -entity(I)| -event(I).
+0 [] -organism(J)| -object(J).
+0 [] -person(K)| -animal(K).
+0 [] -woman(L)| -man(L).
+0 [] M!=mia|woman(M).
+0 [] N!=vincent|man(N).
+0 [] -love(mia,vincent).
+end_of_list.
+
+SCAN INPUT: prop=0, horn=1, equality=1, symmetry=0, max_lits=2.
+
+This is a Horn set with equality.  The strategy will be
+Knuth-Bendix and hyper_res, with positive clauses in
+sos and nonpositive clauses in usable.
+
+   dependent: set(knuth_bendix).
+   dependent: set(anl_eq).
+   dependent: set(para_from).
+   dependent: set(para_into).
+   dependent: clear(para_from_right).
+   dependent: clear(para_into_right).
+   dependent: set(para_from_vars).
+   dependent: set(eq_units_both_ways).
+   dependent: set(dynamic_demod_all).
+   dependent: set(dynamic_demod).
+   dependent: set(order_eq).
+   dependent: set(back_demod).
+   dependent: set(lrpo).
+   dependent: set(hyper_res).
+   dependent: clear(order_hyper).
+
+------------> process usable:
+** KEPT (pick-wt=4): 1 [] -event(A)|thing(A).
+** KEPT (pick-wt=4): 2 [] -entity(A)|thing(A).
+** KEPT (pick-wt=4): 3 [] -object(A)|entity(A).
+** KEPT (pick-wt=4): 4 [] -organism(A)|entity(A).
+** KEPT (pick-wt=4): 5 [] -animal(A)|organism(A).
+** KEPT (pick-wt=4): 6 [] -person(A)|organism(A).
+** KEPT (pick-wt=4): 7 [] -man(A)|person(A).
+** KEPT (pick-wt=4): 8 [] -woman(A)|person(A).
+** KEPT (pick-wt=4): 9 [] -entity(A)| -event(A).
+** KEPT (pick-wt=4): 10 [] -organism(A)| -object(A).
+** KEPT (pick-wt=4): 11 [] -person(A)| -animal(A).
+** KEPT (pick-wt=4): 12 [] -woman(A)| -man(A).
+** KEPT (pick-wt=5): 13 [] A!=mia|woman(A).
+** KEPT (pick-wt=5): 14 [] A!=vincent|man(A).
+** KEPT (pick-wt=3): 15 [] -love(mia,vincent).
+
+------------> process sos:
+
+======= end of input processing =======
+
+=========== start of search ===========
+
+Search stopped because sos empty.
+
+============ end of search ============
+
+-------------- statistics -------------
+clauses given                  0
+clauses generated              0
+clauses kept                  15
+clauses forward subsumed       0
+clauses back subsumed          0
+Kbytes malloced              191
+
+----------- times (seconds) -----------
+user CPU time          0.00          (0 hr, 0 min, 0 sec)
+system CPU time        0.00          (0 hr, 0 min, 0 sec)
+wall-clock time        0             (0 hr, 0 min, 0 sec)
+hyper_res time         0.00
+para_into time         0.00
+para_from time         0.00
+for_sub time           0.00
+back_sub time          0.00
+conflict time          0.00
+
+Process 0 finished Thu Dec 10 00:37:47 2020

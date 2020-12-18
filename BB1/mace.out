@@ -1,0 +1,183 @@
+----- MACE 2.2, August 2003 -----
+The process was started by a Windows user on a Windows machine,
+Thu Dec 10 00:37:47 2020
+The command was "mace -t20 -n1 -N15 -P".
+set(auto).
+   dependent: set(auto1).
+   dependent: set(process_input).
+   dependent: clear(print_kept).
+   dependent: clear(print_new_demod).
+   dependent: clear(print_back_demod).
+   dependent: clear(print_back_sub).
+   dependent: set(control_memory).
+   dependent: assign(max_mem, 12000).
+   dependent: assign(pick_given_ratio, 4).
+   dependent: assign(stats_level, 1).
+   dependent: assign(max_seconds, 10800).
+clear(print_proofs).
+set(prolog_style_variables).
+
+formula_list(usable).
+(all A (event(A)->thing(A)))& (all B (entity(B)->thing(B)))& (all C (object(C)->entity(C)))& (all D (organism(D)->entity(D)))& (all E (animal(E)->organism(E)))& (all F (person(F)->organism(F)))& (all G (man(G)->person(G)))& (all H (woman(H)->person(H)))& (all I (entity(I)-> -event(I)))& (all J (organism(J)-> -object(J)))& (all K (person(K)-> -animal(K)))& (all L (woman(L)-> -man(L)))& (all M (M=mia->woman(M)))& (all N (N=vincent->man(N)))& -love(mia,vincent).
+end_of_list.
+
+-------> usable clausifies to:
+
+list(usable).
+0 [] -event(A)|thing(A).
+0 [] -entity(B)|thing(B).
+0 [] -object(C)|entity(C).
+0 [] -organism(D)|entity(D).
+0 [] -animal(E)|organism(E).
+0 [] -person(F)|organism(F).
+0 [] -man(G)|person(G).
+0 [] -woman(H)|person(H).
+0 [] -entity(I)| -event(I).
+0 [] -organism(J)| -object(J).
+0 [] -person(K)| -animal(K).
+0 [] -woman(L)| -man(L).
+0 [] M!=mia|woman(M).
+0 [] N!=vincent|man(N).
+0 [] -love(mia,vincent).
+end_of_list.
+
+list(clauses).
+1 [] -event(A)|thing(A).
+2 [] -entity(B)|thing(B).
+3 [] -object(C)|entity(C).
+4 [] -organism(D)|entity(D).
+5 [] -animal(E)|organism(E).
+6 [] -person(F)|organism(F).
+7 [] -man(G)|person(G).
+8 [] -woman(H)|person(H).
+9 [] -entity(I)| -event(I).
+10 [] -organism(J)| -object(J).
+11 [] -person(K)| -animal(K).
+12 [] -woman(L)| -man(L).
+13 [] M!=mia|woman(M).
+14 [] N!=vincent|man(N).
+15 [] -love(mia,vincent).
+end_of_list.
+
+list(flattened_and_parted_clauses).
+1 [] -event(A)|thing(A).
+2 [] -entity(A)|thing(A).
+3 [] -object(A)|entity(A).
+4 [] -organism(A)|entity(A).
+5 [] -animal(A)|organism(A).
+6 [] -person(A)|organism(A).
+7 [] -man(A)|person(A).
+8 [] -woman(A)|person(A).
+9 [] -entity(A)| -event(A).
+10 [] -organism(A)| -object(A).
+11 [] -person(A)| -animal(A).
+12 [] -woman(A)| -man(A).
+13 [] mia!=A|B!=A|woman(B).
+14 [] vincent!=A|B!=A|man(B).
+15 [] vincent!=A|mia!=B| -love(B,A).
+end_of_list.
+
+--- Starting search for models of size 1 ---
+
+Applying isomorphism constraints to constants: mia vincent.
+
+18 clauses were generated; 18 of those survived the first stage
+of unit preprocessing; there are 13 atoms.
+
+After all unit preprocessing, 9 atoms are still unassigned;
+14 clauses remain; 0 of those are non-Horn (selectable);
+4882 K allocated; cpu time so far for this domain size: 0.00 sec.
+
+----- statistics for domain size 1 ----
+Input:
+    Clauses input                    18
+    Literal occurrences input        30
+    Greatest atom                    13
+Unit preprocess:
+    Preprocess unit assignments       4
+    Clauses after subsumption        14
+    Literal occ. after subsump.      26
+    Selectable clauses                0
+Decide:
+    Splits                            0
+    Unit assignments                  0
+    Failed paths                      1
+Memory:
+    Memory malloced                 0 K
+    Memory MACE_tp_alloced       4882 K
+Time (seconds):
+    Generate ground clauses        0.00
+    DPLL                           0.00
+
+--- Starting search for models of size 2 ---
+
+Applying isomorphism constraints to constants: mia vincent.
+
+45 clauses were generated; 37 of those survived the first stage
+of unit preprocessing; there are 30 atoms.
+
+After all unit preprocessing, 3 atoms are still unassigned;
+0 clauses remain; 0 of those are non-Horn (selectable);
+4882 K allocated; cpu time so far for this domain size: 0.00 sec.
+
+======================= Model #1 at 0.00 seconds:
+interpretation( 2, [
+
+        predicate(event(_), [0, 0]),
+
+        predicate(thing(_), [1, 1]),
+
+        predicate(entity(_), [1, 1]),
+
+        predicate(object(_), [0, 0]),
+
+        predicate(organism(_), [1, 1]),
+
+        predicate(animal(_), [0, 0]),
+
+        predicate(person(_), [1, 1]),
+
+        predicate(man(_), [0, 1]),
+
+        predicate(woman(_), [1, 0]),
+
+        function(mia, [0]),
+
+        function(vincent, [1]),
+
+        predicate(love(_,_), [
+                0, 0,
+                0, 0   ])
+]).
+end_of_model
+
+----- statistics for domain size 2 ----
+Input:
+    Clauses input                    37
+    Literal occurrences input        67
+    Greatest atom                    30
+Unit preprocess:
+    Preprocess unit assignments      27
+    Clauses after subsumption         0
+    Literal occ. after subsump.       0
+    Selectable clauses                0
+Decide:
+    Splits                            0
+    Unit assignments                  0
+    Failed paths                      0
+Memory:
+    Memory malloced                 0 K
+    Memory MACE_tp_alloced       4882 K
+Time (seconds):
+    Generate ground clauses        0.00
+    DPLL                           0.00
+
+=======================================
+Total times for run (seconds):
+    user CPU time                  0.00   (0 hr, 0 min, 0 sec)
+    system CPU time                0.00   (0 hr, 0 min, 0 sec)
+    wall-clock time                0      (0 hr, 0 min, 0 sec)
+
+Exit by max_models parameter.  The set is satisfiable (1 model(s) found).
+
+The job finished Thu Dec 10 00:37:47 2020

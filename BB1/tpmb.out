@@ -1,0 +1,29 @@
+interpretation( 2, [
+
+        predicate(event(_), [0, 0]),
+
+        predicate(thing(_), [1, 1]),
+
+        predicate(entity(_), [1, 1]),
+
+        predicate(object(_), [0, 0]),
+
+        predicate(organism(_), [1, 1]),
+
+        predicate(animal(_), [0, 0]),
+
+        predicate(person(_), [1, 1]),
+
+        predicate(man(_), [0, 1]),
+
+        predicate(woman(_), [1, 0]),
+
+        function(mia, [0]),
+
+        function(vincent, [1]),
+
+        predicate(love(_,_), [
+                0, 0,
+                0, 0   ])
+]).
+engine(mace).
